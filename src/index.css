@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 11% 5%;
+    --foreground: 40 10% 92%;
+    --card: 222 10% 8%;
+    --card-foreground: 40 10% 92%;
+    --popover: 222 10% 8%;
+    --popover-foreground: 40 10% 92%;
+    --primary: 32 100% 63%;
+    --primary-foreground: 30 60% 8%;
+    --secondary: 220 8% 12%;
+    --secondary-foreground: 40 10% 92%;
+    --muted: 220 8% 12%;
+    --muted-foreground: 220 6% 55%;
+    --accent: 220 8% 14%;
+    --accent-foreground: 40 10% 92%;
+    --destructive: 4 72% 56%;
+    --destructive-foreground: 40 10% 95%;
+    --success: 152 52% 46%;
+    --border: 220 8% 16%;
+    --input: 220 8% 20%;
+    --ring: 32 100% 63%;
+    --radius: 0.25rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-mono,
+code {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* mono uppercase micro labels; padding fixes Cyrillic glyph clipping from letter-spacing */
+.lbl {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding-right: 0.14em;
+  color: hsl(var(--muted-foreground));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(220 8% 20%);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(220 8% 28%);
+}
+
+/* print: only the print document is visible, on white A4 */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+  #print-root,
+  #print-root * {
+    visibility: visible;
+  }
+  #print-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #fff !important;
+    color: #111 !important;
+  }
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+}
+@media screen {
+  #print-root {
+    display: none;
+  }
+}
